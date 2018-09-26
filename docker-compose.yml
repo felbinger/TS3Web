@@ -1,0 +1,48 @@
+version: '3'
+services:
+  db:
+    image: mariadb
+    container_name: root_db_1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: MyS3Cr3tP4sSw0rD
+      MYSQL_DATABASE: teamspeak
+    volumes:
+      - /srv/mariadb/data:/var/lib/mysql
+
+  ts3:
+    image: teamspeak
+    container_name: root_ts3_1
+    restart: always
+    links:
+      - db
+    environment:
+      TS3SERVER_DB_PLUGIN: ts3db_mariadb
+      TS3SERVER_DB_SQLCREATEPATH: create_mariadb
+      TS3SERVER_DB_HOST: db
+      TS3SERVER_DB_USER: root
+      TS3SERVER_DB_PASSWORD: MyS3Cr3tP4sSw0rD
+      TS3SERVER_DB_NAME: teamspeak
+      TS3SERVER_DB_WAITUNTILREADY: 30
+      TS3SERVER_LICENSE: accept
+      TS3SERVER_IP_WHITELIST: /whitelist.txt
+    volumes:
+      - /srv/ts3/whitelist.txt:/whitelist.txt
+    ports:
+      - '2008:2008'      # accounting port
+      - '2010:2010'      # weblist port
+      - '9987:9987'      # default port (voice)
+      - '30033:30033'    # filetransfer port
+      - '41144:41144'    # tsdns port
+
+  ts3web:
+    image: ts3web
+    container_name: root_ts3web_1
+    restart: always
+    environment:
+      ALIAS: 'My Testserver'
+      HOST: 'ts3'
+      PORT: '10011'
+      LANG: 'en'
+    ports:
+      - '8080:80'        # webinterface port (host:container)
