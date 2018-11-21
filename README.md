@@ -3,8 +3,8 @@ This is a GitHub repository for a Docker image of the [TeamSpeak 3 Psychokiller 
 
 The web interface is no longer in development by [Psychokiller](https://forum.teamspeak.com/threads/49547-DEV-Ts3-Webinterface)!
 
-You should whitelist the IP address of the server where the interface is hosted. 
-If both (Webinterface and TeamSpeak Server) are on the same server you can simply whitelist the whole Docker network using the ip range `172.18.0.0/24`
+You should whitelist the IP address of the server where the interface is hosted.
+If both (web interface and TeamSpeak server) are on the same server you can simply whitelist the whole Docker network using the ip range (e.g. `172.18.0.0/24`)
 
 ### Environment Variables
 * ALIAS: Name
@@ -129,13 +129,13 @@ $ sudo docker logs root_ts3_1
 ------------------------------------------------------------------
                       I M P O R T A N T                           
 ------------------------------------------------------------------
-      ServerAdmin privilege key created, please use it to gain 
+      ServerAdmin privilege key created, please use it to gain
       serveradmin rights for your virtualserver. please
       also check the doc/privilegekey_guide.txt for details.
 
        token=ZBnJVnhEOULGt4uX9XDMZR3fd1TKxZhBM6lv4sxf
 ------------------------------------------------------------------
 
-2018-07-02 23:04:16.909896|INFO    |CIDRManager   |   |updated query_ip_whitelist ips: 172.18.0.0/24, 
+2018-07-02 23:04:16.909896|INFO    |CIDRManager   |   |updated query_ip_whitelist ips: 172.18.0.0/24,
 2018-07-02 23:04:16.910864|INFO    |Query         |   |listening on 0.0.0.0:10011, [::]:10011
 ```
