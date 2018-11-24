@@ -51,8 +51,8 @@ services:
       - /srv/ts3/whitelist.txt:/whitelist.txt
     ports:
       - '2008:2008'      # accounting port
-      - '2010:2010'      # weblist port
-      - '9987:9987'      # default port (voice)
+      - '2010:2010/udp'  # weblist port
+      - '9987:9987/udp'  # default port (voice)
       - '30033:30033'    # filetransfer port
       - '41144:41144'    # tsdns port
 
