@@ -27,7 +27,8 @@ services:
       TS3SERVER_LICENSE: accept
       TS3SERVER_IP_WHITELIST: /whitelist.txt
     volumes:
-      - /srv/ts3/whitelist.txt:/whitelist.txt
+      - "/srv/ts3/data:/var/ts3server/"
+      - "/srv/ts3/whitelist.txt:/whitelist.txt"
     ports:
       - '2008:2008'      # accounting port
       - '2010:2010/udp'  # weblist port
